@@ -1,0 +1,439 @@
+/* Reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* noise texture using SVG data URI (very light) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.02' /></svg>");
+  opacity: 0.9;
+  z-index: 0;
+}
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+}
+
+.nav-inner {
+  width: 90%;
+  max-width: 1000px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative; /* ditambahkan: agar .nav-links absolute pos relative ke nav-inner */
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #0077b6;
+  font-weight: bold;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #023e8a;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  background: rgba(0, 119, 182, 0.1);
+}
+
+.btn-cta {
+  background: #0077b6;
+  color: #fff !important;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+.hamburger span {
+  height: 3px;
+  background: #023e8a;
+  margin: 4px 0;
+  border-radius: 2px;
+  width: 24px;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    right: 5%;
+    top: 60px;
+    flex-direction: column;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: none;
+  }
+  .nav-open .nav-links {
+    display: flex;
+  }
+  .hamburger {
+    display: flex;
+    margin-left: auto;
+  }
+}
+
+/* General Sections */
+.section {
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  width: 90%;
+  max-width: 900px;
+}
+
+/* Profile Section */
+.profile-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.profile-left img {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile-right {
+  flex: 1;
+  min-width: 250px;
+}
+.profile-right h1 {
+  font-size: 2rem;
+  color: #0077b6;
+}
+
+/* Education */
+.education-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #023e8a;
+}
+.education-card li {
+  list-style: none;
+  margin: 8px 0;
+  background: #e9f1ff;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+/* Gallery */
+.gallery {
+  text-align: center;
+}
+.gallery-container {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  overflow: hidden;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+.gallery-slider {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+.gallery-slider .item {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.gallery-slider img,
+.gallery-slider video {
+  width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+}
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.nav:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+.prev {
+  left: 10px;
+}
+.next {
+  right: 10px;
+}
+
+/* Footer */
+footer {
+  background: #023e8a;
+  color: #fff;
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 60px;
+}
+footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+.socials img {
+  width: 30px;
+  margin: 8px;
+  transition: transform 0.3s;
+}
+.socials img:hover {
+  transform: scale(1.2);
+}
+.copy {
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+/* Responsive Profile */
+@media (max-width: 768px) {
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profile-left img {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* Feed (grid-based gallery: kiri-kanan pada laptop/tablet) */
+.feed {
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  z-index: 1;
+}
+.feed-item {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+}
+.feed-item img,
+.feed-item video {
+  width: 100%;
+  height: 220px; /* ketinggian kartu konsisten, ubah sesuai kebutuhan */
+  object-fit: cover;
+  display: block;
+  vertical-align: middle;
+}
+.feed-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.12);
+}
+
+/* Responsive tweaks */
+@media (min-width: 1200px) {
+  .feed-item img,
+  .feed-item video {
+    height: 260px;
+  }
+}
+@media (max-width: 640px) {
+  .feed {
+    grid-template-columns: 1fr;
+  }
+  .feed-item img,
+  .feed-item video {
+    height: 180px;
+  }
+}
+
+/* Modal / draggable slider */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 6, 23, 0.6),
+    rgba(2, 6, 23, 0.85)
+  );
+  z-index: 9999;
+  padding: 20px;
+}
+.modal.hidden {
+  display: none;
+}
+.modal-viewport {
+  width: min(1100px, 95%);
+  max-width: 1100px;
+  height: min(80vh, 720px);
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+  border-radius: 12px;
+}
+.modal-track {
+  display: flex;
+  height: 100%;
+  transition: transform 300ms ease;
+  touch-action: pan-y;
+  will-change: transform;
+}
+.modal-slide {
+  min-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+.modal-slide img,
+.modal-slide video {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(2, 6, 23, 0.6);
+}
+
+/* Controls */
+.modal-close,
+.modal-prev,
+.modal-next {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  color: #fff;
+  padding: 12px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 10001;
+}
+.modal-close {
+  right: 22px;
+  top: 22px;
+}
+.modal-prev {
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.modal-next {
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* draggable cursor hint */
+.modal-track.grabbing {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* small tweaks */
+@media (max-width: 640px) {
+  .modal-prev,
+  .modal-next {
+    display: none;
+  }
+  .modal-close {
+    right: 10px;
+    top: 12px;
+    padding: 8px;
+  }
+}
+
+/* site-card wrapper: hindari nested .card styling yang membuat spacing/width berantakan */
+.site-card {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 0; /* wrapper jangan beri padding ganda */
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  width: 95%;
+}
+.site-card > .section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.site-card .card {
+  margin-bottom: 18px;
+  width: 100%;
+  max-width: none;
+  padding: 24px; /* konsistenkan padding untuk card di dalam wrapper */
+  box-shadow: 0 8px 28px rgba(2, 6, 23, 0.06);
+  border-radius: 14px;
+}
+/* card--wide: gunakan ruang penuh di dalam site-card */
+.card.card--wide {
+  padding: 28px;
+}
